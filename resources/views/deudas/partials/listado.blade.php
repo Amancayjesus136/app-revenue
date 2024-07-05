@@ -282,9 +282,10 @@
                                         <td>
                                             @if ($deuda->deu_monto_deuda != 0)
                                                 <div class="hstack gap-2">
-                                                    <button class="btn btn-sm btn-soft-primary" data-bs-target="#modal{{ $deuda->id_deuda }}" data-bs-toggle="modal"><i class="ri-check-fill align-bottom"></i> Pagar deuda</button>
+                                                    <button class="btn btn-sm btn-soft-primary" data-bs-target="#modal{{ $deuda->id_deuda }}" data-bs-toggle="modal"><i class="ri-check-fill align-bottom"></i> Pagar</button>
                                             @endif
                                                     <button class="btn btn-sm btn-soft-danger" data-bs-toggle="modal" data-bs-target="#removeTaskItemModal" data-remove-id="{{ $deuda->id_deuda }}"><i class="ri-delete-bin-5-fill align-bottom"></i></button>
+                                                    <a href="{{ route('deudas.show', $deuda->id_deuda) }}" class="btn btn-sm btn-soft-info edit-list"><i class="ri-eye-fill align-bottom"></i></a>
                                                     <button class="btn btn-sm btn-soft-info edit-list" data-bs-toggle="modal" data-bs-target="#createTask" data-edit-id="{{ $deuda->id_deuda }}"><i class="ri-pencil-fill align-bottom"></i></button>
                                                 </div>
                                         </td>

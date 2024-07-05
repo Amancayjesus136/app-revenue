@@ -43,4 +43,10 @@ class DeudaController extends Controller
             return redirect()->back()->with('error', 'Hubo un problema al crear la inscripción');
         }
     }
+
+    public function show($id_deuda)
+    {
+        $deuda = Deuda::with('pagos')->findOrFail($id_deuda);
+        return view('deudas.partials.factura', compact('deuda'));
+    }
 }
