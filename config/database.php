@@ -61,20 +61,20 @@ return [
         ],
 
 
-    'pgsql' => [
-    'driver' => 'pgsql',
-    'url' => env('DATABASE_URL'),
-    'host' => env('DB_HOST_PGSQL', '127.0.0.1'),
-    'port' => env('DB_PORT_PGSQL', '5432'),
-    'database' => env('DB_DATABASE_PGSQL', 'bd_app'), // Nombre de tu base de datos PostgreSQL
-    'username' => env('DB_USERNAME_PGSQL', 'postgres'),
-    'password' => env('DB_PASSWORD_PGSQL', 'hola'), // Contraseña de tu base de datos PostgreSQL
-    'charset' => 'utf8',
-    'prefix' => '',
-    'prefix_indexes' => true,
-    'schema' => 'public',
-    'sslmode' => 'prefer',
-],
+        'pgsql' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_PGSQL', '127.0.0.1'),
+            'port' => env('DB_PORT_PGSQL', '5432'),
+            'database' => env('DB_DATABASE_PGSQL', 'bd_app'), // Nombre de tu base de datos PostgreSQL
+            'username' => env('DB_USERNAME_PGSQL', 'postgres'),
+            'password' => env('DB_PASSWORD_PGSQL', 'hola'), // Contraseña de tu base de datos PostgreSQL
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
 
         'mongodb' => [

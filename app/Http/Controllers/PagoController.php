@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Deuda;
 use App\Models\Pago;
+use App\Http\Controllers\DataMigrationController;
 use Illuminate\Http\Request;
 
 class PagoController extends Controller
@@ -37,7 +38,16 @@ class PagoController extends Controller
 
         Pago::create($data);
 
-        return redirect()->route('deudas.index');
+        // Instanciar el controlador DataMigrationController y llamar a migrateData()
+        $migrationController = new DataMigrationController();
+        $migrationController->migrateData();
+
+        // Eliminar la deuda si deu_monto_deuda es 0.00
+        if ($deuda->deu_monto_deuda <= 0.00) {
+            $deuda->delete();
+        }
+
+        return redirect()->route('deudas.index')->with('success', 'Pago registrado correctamente.');
     }
 
 }

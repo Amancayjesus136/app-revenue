@@ -42,7 +42,18 @@ class PendienteController extends Controller
         $pendiente->pen_estado = $pendiente->pen_estado == 1 ? 0 : 1;
         $pendiente->save();
 
-        return redirect()->route('pendientes.index')->with('success', 'Estado del pendiente actualizado correctamente');
+        // Instanciar el controlador DataMigrationController y llamar a migrateData()
+        $migrationController = new DataMigrationController();
+        $migrationSuccessful = $migrationController->migrateData();
+
+        if ($migrationSuccessful) {
+            // Eliminar el registro de Pendiente después de la migración exitosa
+            $pendiente->delete();
+            return redirect()->route('pendientes.index')->with('success', 'Estado del pendiente actualizado y registro eliminado correctamente');
+        } else {
+            return redirect()->route('pendientes.index')->with('error', 'Error al migrar datos a MongoDB. No se eliminó el registro.');
+        }
     }
+
 
 }
