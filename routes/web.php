@@ -8,6 +8,7 @@ use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PendienteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReadMongoDBController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,7 @@ Route::get('ultimo-ingreso', [DashboardController::class, 'ultimoIngreso'])->nam
 
 
 Route::resource('deudas', DeudaController::class);
+
 Route::resource('pagos', PagoController::class);
 Route::resource('eventos', EventoController::class);
 
@@ -52,5 +54,21 @@ Route::resource('ingresos', IngresosController::class);
 
 Route::get('/migrate-data', [DataMigrationController::class, 'migrateData'])->name('migrate.data');
 
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/read/deudas', [ReadMongoDBController::class, 'deudas'])->name('read.deudas');
+
+
+Route::get('/export/exportDeudaToExcel', [ReadMongoDBController::class, 'exportDeudaToExcel'])->name('export.exportDeudaToExcel');
 
 require __DIR__.'/auth.php';

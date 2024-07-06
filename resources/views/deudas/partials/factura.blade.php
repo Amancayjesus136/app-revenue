@@ -106,7 +106,7 @@
                                                 <tr class="table-active">
                                                     <th scope="col" style="width: 50px;">#</th>
                                                     <th scope="col">Pagos detalles</th>
-                                                    <th scope="col">Inicial</th>
+                                                    <th scope="col">Monto pendiente</th>
                                                     <th scope="col">Disminuye</th>
                                                     <th scope="col" class="text-end">Monto de pago</th>
                                                 </tr>
@@ -119,6 +119,10 @@
                                         <tbody id="products-list">
                                             @php
                                                 $montoRestante = $deuda->deu_monto_fijo;
+                                                $totalMonto = 0;
+                                                foreach ($deuda->pagos as $pago) {
+                                                    $totalMonto += $pago->monto_pago;
+                                                }
                                             @endphp
                                             @foreach ($deuda->pagos as $pago)
                                                 <tr>
@@ -130,15 +134,15 @@
                                                             <span class="fw-medium">{{ $pago->id_deuda }}</span>
                                                         @endif
                                                         <p class="text-muted mb-0">
-                                                            {{ Carbon::parse($pago->created_at)->translatedFormat('d \d\e F \d\e\l Y \a \l\a\s h:i A') }}
+                                                            {{{ Carbon::parse($pago->created_at)->translatedFormat('d \d\e F \d\e\l Y \a \l\a\s h:i A') }}}
                                                         </p>
                                                     </td>
-                                                    <td>{{ $montoRestante }}</td>
+                                                    <td>S/ .{{ $montoRestante }}</td>
                                                     @php
                                                         $montoRestante -= $pago->monto_pago;
                                                     @endphp
                                                     <td>-</td>
-                                                    <td class="text-end">{{ $pago->monto_pago }}</td>
+                                                    <td class="text-end">S/. {{ $pago->monto_pago }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -165,8 +169,12 @@
                                                     <td class="text-end">$65.00</td>
                                                 </tr> --}}
                                                 <tr class="border-top border-top-dashed fs-15">
-                                                    <th scope="row">Total pagado</th>
-                                                    <th class="text-end">S/. {{ $deuda->deu_monto_deuda }}</th>
+                                                    <th scope="row" class="text-danger">Total pagado</th>
+                                                    <th class="text-end text-danger">S/. {{ $totalMonto  }}</th>
+                                                </tr>
+                                                <tr class="border-top border-top-dashed fs-15">
+                                                    <th scope="row">Monto pendiente</th>
+                                                    <th class="text-end">S/. {{ number_format($deuda->deu_monto_deuda, 0, ',', '.') }}</th>
                                                 </tr>
                                             </tbody>
                                         </table>

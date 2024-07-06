@@ -797,24 +797,15 @@
                     </li>
                 </ul>
 
-                {{-- <ul class="navbar-nav" id="navbar-nav">
-                    <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                <ul class="navbar-nav" id="navbar-nav">
+                    <li class="menu-title"><span data-key="t-menu">Datos migrados</span></li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                            <i class="las la-tachometer-alt"></i> <span data-key="t-dashboards">Dashboards</span>
+                        <a class="nav-link menu-link" href="{{ route('read.deudas') }}" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                            <i class="bx bx-dollar-circle"></i> <span data-key="t-dashboard">Dashboard de lectura</span>
                         </a>
-                        <div class="collapse menu-dropdown" id="sidebarDashboards">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Analytics </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Analytics </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
-                </ul> --}}
+                </ul>
+
             </div>
         </div>
 

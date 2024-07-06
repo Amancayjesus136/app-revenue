@@ -177,15 +177,15 @@
                     <table class="table align-middle position-relative table-nowrap">
                         <thead class="table-active">
                             <tr>
-                                @if (!$hideColumns['deu_monto_fijo'])
+                                {{-- @if (!$hideColumns['deu_monto_fijo'])
                                     <th scope="col">Monto de la deuda</th>
-                                @endif
+                                @endif --}}
                                 @if (!$hideColumns['deu_monto_deuda'])
                                     <th scope="col">Monto actual</th>
                                 @endif
-                                @if (!$hideColumns['deu_fecha_pagar'])
+                                {{-- @if (!$hideColumns['deu_fecha_pagar'])
                                     <th scope="col">Fecha registrado</th>
-                                @endif
+                                @endif --}}
                                 @if (!$hideColumns['deu_tipo_deuda'])
                                     <th scope="col">T. deuda</th>
                                 @endif
@@ -225,13 +225,13 @@
                             @else
                                 @foreach ($deudas as $deuda)
                                     <tr>
-                                        @if (!$hideColumns['deu_monto_fijo'])
+                                        {{-- @if (!$hideColumns['deu_monto_fijo'])
                                             <td>S/. {{ $deuda->deu_monto_fijo ?? '' }}</td>
-                                        @endif
+                                        @endif --}}
                                         @if (!$hideColumns['deu_monto_deuda'])
                                             <td>S/. {{ $deuda->deu_monto_deuda ?? '' }}</td>
                                         @endif
-                                        @if (!$hideColumns['deu_fecha_pagar'])
+                                        {{-- @if (!$hideColumns['deu_fecha_pagar'])
                                             <td>
                                                 @if($deuda->deu_fecha_pagar)
                                                     {{ Carbon::parse($deuda->deu_fecha_pagar)->translatedFormat('d \d\e F \d\e\l Y') }}
@@ -239,7 +239,7 @@
                                                     ''
                                                 @endif
                                             </td>
-                                        @endif
+                                        @endif --}}
                                         @if (!$hideColumns['deu_tipo_deuda'])
                                             <td>{{ $deuda->deu_tipo_deuda ?? '' }}</td>
                                         @endif
@@ -247,7 +247,7 @@
                                             <td>{{ $deuda->deu_tipo_deudor ?? '' }}</td>
                                         @endif
                                         @if (!$hideColumns['deu_nombres'])
-                                            <td>{{ $deuda->deu_nombres ?? '' }}</td>
+                                            <td><span class="badge bg-dark text-uppercase">{{ $deuda->deu_nombres ?? '' }}</span></td>
                                         @endif
                                         {{-- @if (!$hideColumns['deu_apellidos'])
                                             <td>{{ $deuda->deu_apellidos ?? '' }}</td>
@@ -282,10 +282,10 @@
                                         <td>
                                             @if ($deuda->deu_monto_deuda != 0)
                                                 <div class="hstack gap-2">
-                                                    <button class="btn btn-sm btn-soft-primary" data-bs-target="#modal{{ $deuda->id_deuda }}" data-bs-toggle="modal"><i class="ri-check-fill align-bottom"></i> Pagar</button>
+                                                    <button class="btn btn-sm btn-soft-warning" data-bs-target="#modal{{ $deuda->id_deuda }}" data-bs-toggle="modal"><i class="ri-check-fill align-bottom"></i> Pagar deuda</button>
                                             @endif
-                                                    <button class="btn btn-sm btn-soft-danger" data-bs-toggle="modal" data-bs-target="#removeTaskItemModal" data-remove-id="{{ $deuda->id_deuda }}"><i class="ri-delete-bin-5-fill align-bottom"></i></button>
-                                                    <a href="{{ route('deudas.show', $deuda->id_deuda) }}" class="btn btn-sm btn-soft-info edit-list"><i class="ri-eye-fill align-bottom"></i></a>
+                                                    {{-- <button class="btn btn-sm btn-soft-danger" data-bs-toggle="modal" data-bs-target="#removeTaskItemModal" data-remove-id="{{ $deuda->id_deuda }}"><i class="ri-delete-bin-5-fill align-bottom"></i></button> --}}
+                                                    <a href="{{ route('deudas.show', $deuda->id_deuda) }}" class="btn btn-sm btn-soft-success edit-list"><i class="ri-eye-fill align-bottom"></i></a>
                                                     <button class="btn btn-sm btn-soft-info edit-list" data-bs-toggle="modal" data-bs-target="#createTask" data-edit-id="{{ $deuda->id_deuda }}"><i class="ri-pencil-fill align-bottom"></i></button>
                                                 </div>
                                         </td>
