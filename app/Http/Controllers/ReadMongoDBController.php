@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\mongodb\Pagos;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -22,6 +23,12 @@ class ReadMongoDBController extends Controller
         }
 
         return view('read.deudas_read.principal', compact('resultados'));
+    }
+
+    public function pagos()
+    {
+        $pagos = Pagos::paginate(5);
+        return view('read.pagos_read.principal_pagos', compact('pagos'));
     }
 
     public function exportDeudaToExcel()

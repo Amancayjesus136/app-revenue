@@ -67,6 +67,7 @@ Route::get('/migrate-data', [DataMigrationController::class, 'migrateData'])->na
 */
 
 Route::get('/read/deudas', [ReadMongoDBController::class, 'deudas'])->name('read.deudas');
+Route::get('/read/pagos', [ReadMongoDBController::class, 'pagos'])->name('read.pagos');
 
 
 Route::get('/export/exportDeudaToExcel', [ReadMongoDBController::class, 'exportDeudaToExcel'])->name('export.exportDeudaToExcel');

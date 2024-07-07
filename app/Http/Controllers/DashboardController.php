@@ -6,25 +6,31 @@ use App\Models\Calcular;
 use App\Models\Deuda;
 use App\Models\Eventos;
 use App\Models\Ingresos;
+use App\Models\mongodb\Pagos;
+use App\Models\mongodb\pendientes;
 use App\Models\Pago;
 use App\Models\Pendiente;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $totalIngresos = Ingresos::sum('ing_monto');
-        $totalPagadas = Pago::sum('monto_pago') + Pendiente::where('pen_estado', 0)->sum('pen_monto');
+        $totalPagadas = Pagos::count();
+
+        $pendientesModel = new Pendientes();
+        $pendientesCount = $pendientesModel->countWhere('pen_estado', 0);
+        $totalPendientes = $pendientesModel->sumWhere('pen_estado', 1, 'pen_monto');
+
         $eventos = Eventos::all();
-        $totalPendientes = Pendiente::where('pen_estado', 1)->sum('pen_monto');
-
+        $pendientesTotales = Pendiente::where('pen_estado', 1)->sum('pen_monto');
         $totalDeudas = Deuda::sum('deu_monto_deuda');
-
         $totalAhorrados = $totalIngresos - $totalPagadas;
 
         $deudas = Deuda::all();
-        $pendientes = Pendiente::all();
-        return view('dashboard', compact('totalIngresos', 'totalPendientes', 'eventos', 'totalDeudas', 'deudas', 'pendientes', 'totalPagadas', 'totalAhorrados'));
+
+        return view('dashboard', compact('totalIngresos', 'totalPendientes', 'pendientesTotales', 'eventos', 'totalDeudas', 'deudas', 'pendientesCount', 'totalPagadas', 'totalAhorrados'));
     }
 
     public function store(Request $request)

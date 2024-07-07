@@ -119,13 +119,13 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <a href="{{ route('ingresos.index') }}">
+                                            <a href="{{ route('read.pagos') }}">
                                                 <div class="card card-animate">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
                                                             <div>
-                                                                <p class="fw-medium text-muted mb-0">Pagos totales</p>
-                                                                <h2 class="mt-4 ff-secondary fw-semibold"><span>S/. {{ $totalPagadas }}</span></h2>
+                                                                <p class="fw-medium text-muted mb-0">Cantidad de pagos cancelados</p>
+                                                                <h2 class="mt-4 ff-secondary fw-semibold"><span>{{ $totalPagadas }} </span></h2>
                                                             </div>
                                                             <div>
                                                                 <div class="avatar-sm flex-shrink-0">
@@ -146,8 +146,8 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
                                                             <div>
-                                                                <p class="fw-medium text-muted mb-0">Ahorrado actual</p>
-                                                                <h2 class="mt-4 ff-secondary fw-semibold"><span>S/. {{ $totalAhorrados }}</span></h2>
+                                                                <p class="fw-medium text-muted mb-0">Pendientes comprados</p>
+                                                                <h2 class="mt-4 ff-secondary fw-semibold"><span>{{ $pendientesCount  }}</span></h2>
                                                             </div>
                                                             <div>
                                                                 <div class="avatar-sm flex-shrink-0">
@@ -191,7 +191,7 @@
                                                         <div class="d-flex justify-content-between">
                                                             <div>
                                                                 <p class="fw-medium text-muted mb-0">Pendientes</p>
-                                                                <h2 class="mt-4 ff-secondary fw-semibold"><span>S/. {{ $totalPendientes }}</span></h2>
+                                                                <h2 class="mt-4 ff-secondary fw-semibold"><span>S/. {{ $pendientesTotales }}</span></h2>
                                                             </div>
                                                             <div>
                                                                 <div class="avatar-sm flex-shrink-0">
